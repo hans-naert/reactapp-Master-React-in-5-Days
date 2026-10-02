@@ -10,7 +10,7 @@ function App() {
   return (
     <>
     {
-      [1, 2, 3].map((item) => <Count key={item} init={item} end={5+item} />) 
+      [1, 2, 3].map((item) => <Count key={item} init={item} end={5+item} autostart={item<2?true:false} />) 
     }
      
     </>
