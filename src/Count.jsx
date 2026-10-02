@@ -8,6 +8,11 @@ function Count({ init = 0, end = 5, autostart = false }) {
     const [inputValue, setInputValue] = useState("");
     //const [initValue, setInitValue] = useState(true);
     const initialInit = useRef(true);
+    const refCounter = useRef(null);
+
+    useEffect(() => {
+        refCounter.current?.focus();
+    },[]);
 
     useEffect(() => {
         if (!start) {
@@ -47,10 +52,14 @@ function Count({ init = 0, end = 5, autostart = false }) {
             }
             <input onChange={(e) => setInputValue(e.target.value)
             } onKeyDown={(e) => {
-                if (e.key < "0" || e.key > "9") {
+                // Allow control/navigation keys (Backspace, Delete, Arrow keys, Tab, ...)
+                if (e.key.length > 1) {
+                    return;
+                }
+                if (!/^[0-9a-fA-F]$/.test(e.key)) {
                     e.preventDefault();
                 }
-            }} />
+            }} ref={refCounter} />
             <div>inputValue: {inputValue}</div>
         </>
     );
