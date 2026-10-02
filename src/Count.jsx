@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 
 
-function Count({ init = 0, end = 5, autostart = false }) {
+function Count({ init = 0, end = 5, autostart = false, setTotal }) {
     const [count, setCount] = useState(init);
     const [start, setStart] = useState(true);
     const [inputValue, setInputValue] = useState("");
@@ -19,8 +19,9 @@ function Count({ init = 0, end = 5, autostart = false }) {
             const timer = setInterval(() => {
                 setCount((c) => {
                     if (c + 1 >= end)
-                        setStart(true);
-                    return c + 1;
+                        setStart(true); 
+                  return c + 1;
+                    
                 });
 
             }, 1000);
@@ -50,7 +51,11 @@ function Count({ init = 0, end = 5, autostart = false }) {
                     Start
                 </button> : <p>Counting...</p>
             }
-            <input onChange={(e) => setInputValue(e.target.value)
+            <input onChange={(e) => {
+                setTotal(t => t-parseInt(inputValue||"0"))
+                setTotal(t => t+parseInt(e.target.value||"0"))
+                setInputValue(e.target.value)
+            }
             } onKeyDown={(e) => {
                 // Allow control/navigation keys (Backspace, Delete, Arrow keys, Tab, ...)
                 if (e.key.length > 1) {

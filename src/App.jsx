@@ -6,13 +6,15 @@ import './App.css'
 import Count from './Count'
 
 function App() {
+
+  const [total, setTotal] = useState(0);
  
   return (
     <>
     {
-      [1, 2, 3].map((item) => <Count key={item} init={item} end={5+item} autostart={item<2?true:false} />) 
-    }
-     
+      [1, 2, 3].map((item) => <Count key={item} setTotal={setTotal} init={item} end={5+item} autostart={item<2?true:false} />) 
+   }
+    <div>Total: {total}</div>  
     </>
   )
 }
