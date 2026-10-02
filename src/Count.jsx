@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react";
 function Count({ init = 0, end = 5, autostart = false }) {
     const [count, setCount] = useState(init);
     const [start, setStart] = useState(true);
+    const [inputValue, setInputValue] = useState("");
     //const [initValue, setInitValue] = useState(true);
     const initialInit = useRef(true);
 
@@ -44,6 +45,8 @@ function Count({ init = 0, end = 5, autostart = false }) {
                     Start
                 </button> : <p>Counting...</p>
             }
+            <input onChange={(e) => setInputValue(e.target.value)} />
+            <div>inputValue: {inputValue}</div>
         </>
     );
 }
