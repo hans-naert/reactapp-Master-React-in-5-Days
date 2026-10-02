@@ -45,7 +45,12 @@ function Count({ init = 0, end = 5, autostart = false }) {
                     Start
                 </button> : <p>Counting...</p>
             }
-            <input onChange={(e) => setInputValue(e.target.value)} />
+            <input onChange={(e) => setInputValue(e.target.value)
+            } onKeyDown={(e) => {
+                if (e.key < "0" || e.key > "9") {
+                    e.preventDefault();
+                }
+            }} />
             <div>inputValue: {inputValue}</div>
         </>
     );
